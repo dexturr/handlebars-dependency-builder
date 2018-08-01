@@ -1,0 +1,21 @@
+{
+  "name": "dep-builder",
+  "version": "0.0.1",
+  "description": "Contructs a tree of component dependencies",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha tests/tests.js"
+  },
+  "keywords": [
+    "dep-builder"
+  ],
+  "author": "Dexter Edwards",
+  "license": "MIT",
+  "dependencies": {
+    "ember-template-recast": "^1.2.0",
+    "globby": "^8.0.1"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0"
+  }
+}
