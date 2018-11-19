@@ -11,7 +11,7 @@ module.exports = class HandblebarsDependencyBuilder {
   }
 
   getFlattenedDependencies(pathName) {
-    const files = globby.sync(pathName, { absolute: true })
+    const files = globby.sync(`${pathName}/**/*.hbs`, { absolute: true })
     if (files.length < 1) {
       throw new Error('No files found');
     }

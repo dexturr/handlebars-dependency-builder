@@ -4,7 +4,7 @@ const DepBuilder = require('../index');
 
 describe('app', function() {
   it('should do the thing', function() {
-    const pathName = path.resolve(__dirname, 'components/**/*.hbs');
+    const pathName = path.resolve(__dirname, 'components');
     const depBuilder = new DepBuilder();
     const deps = depBuilder.getFlattenedDependencies(pathName)
     assert.deepStrictEqual(deps['test'], []);
