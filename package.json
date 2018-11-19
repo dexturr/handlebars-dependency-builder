@@ -1,5 +1,5 @@
 {
-  "name": "dep-builder",
+  "name": "handlebars-dependency-builder",
   "version": "0.0.1",
   "description": "Contructs a tree of component dependencies",
   "main": "index.js",
@@ -7,7 +7,8 @@
     "test": "mocha tests/tests.js"
   },
   "keywords": [
-    "dep-builder"
+    "handlebars",
+    "dependency builder"
   ],
   "author": "Dexter Edwards",
   "license": "MIT",
@@ -20,7 +21,7 @@
     "eslint-plugin-node": "^8.0.0",
     "mocha": "^5.2.0"
   },
-  "engines" : { 
-    "node" : ">=8.0.0" 
+  "engines": {
+    "node": ">=8.0.0"
   }
 }

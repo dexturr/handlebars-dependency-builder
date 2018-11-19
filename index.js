@@ -1,10 +1,9 @@
 const globby = require('globby');
-const path = require('path');
 const { parse, transform } = require('ember-template-recast');
 const fs = require('fs');
 
 // From hanldebars website. Let is ember specific and will be introduced later
-const builtInHelpers = ['if', 'unless', 'each', 'with', 'log', 'lookup', 'let'];
+const ignoreComponents = ['if', 'unless', 'each', 'with', 'log', 'lookup', 'let', 'yeild', 'action'];
 
 module.exports = class HandblebarsDependencyBuilder {
   constructor() {
@@ -26,7 +25,7 @@ module.exports = class HandblebarsDependencyBuilder {
 
     // Flatten the dependncy graph
     // Add the things with 1 dep first then build up from there
-    let index = 1;
+    let index = 0;
     while (resolvedDeps.length != Object.keys(this.componentsRegistry).length) {
       const deps = Object
         .keys(this.componentsRegistry)
@@ -56,7 +55,7 @@ module.exports = class HandblebarsDependencyBuilder {
   }
 
   pushToDepsArray(invokedComponentName, componentName) {
-    if(builtInHelpers.includes(invokedComponentName)) {
+    if(ignoreComponents.includes(invokedComponentName) || invokedComponentName.startsWith('@') || invokedComponentName.startsWith('this')) {
       return;
     }
   
