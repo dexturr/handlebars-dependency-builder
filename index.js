@@ -10,15 +10,15 @@ module.exports = class HandblebarsDependencyBuilder {
     this.componentsRegistry = {};
   }
 
-  async getFlattenedDependencies(pathName) {
-    const files = await globby(pathName, { absolute: true })
+  getFlattenedDependencies(pathName) {
+    const files = globby.sync(pathName, { absolute: true })
     if (files.length < 1) {
       throw new Error('No files found');
     }
     const componentNames = files.map((file) => file.split('components/')[1].replace('.hbs', ''));
     componentNames.map((name) => this.componentsRegistry[name] = []);
     for (const file of files) {
-      const fileText = await this.readFile(file);
+      const fileText = fs.readFileSync(file, { encoding: 'UTF-8'});
       this.applyTransform(this.findDeps.bind(this), file, fileText)
     }
     let resolvedDeps = [];
@@ -60,9 +60,9 @@ module.exports = class HandblebarsDependencyBuilder {
     }
   
     if(!this.componentsRegistry[invokedComponentName]) {
-      console.log(`Could not find component ${invokedComponentName}`)
+      console.log(`Could not find component ${invokedComponentName}`);
     } else if(!this.componentsRegistry[componentName].includes(invokedComponentName)) {
-      this.componentsRegistry[componentName].push(invokedComponentName)
+      this.componentsRegistry[componentName].push(invokedComponentName);
     }
   }
 
@@ -87,13 +87,6 @@ module.exports = class HandblebarsDependencyBuilder {
     });
   }
 
-  readFile(filePath) {
-    return new Promise((resolve, reject) => {
-      fs.readFile(filePath, 'utf8', (err, contents) => {
-        err ? reject(err) : resolve(contents);
-      });
-    });
-  }
 
   applyTransform(plugin, filePath, contents) {
     const code = plugin(
