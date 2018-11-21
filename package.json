@@ -8,7 +8,7 @@
   },
   "keywords": [
     "handlebars",
-    "dependency builder"
+    "dependency"
   ],
   "author": "Dexter Edwards",
   "license": "MIT",
@@ -23,5 +23,13 @@
   },
   "engines": {
     "node": ">=8.0.0"
+  },
+  "homepage": "https://github.com/dexturr/handlebars-dependency-builder",
+  "bugs": {
+    "url": "https://github.com/dexturr/handlebars-dependency-builder/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dexturr/handlebars-dependency-builder.git"
   }
 }
